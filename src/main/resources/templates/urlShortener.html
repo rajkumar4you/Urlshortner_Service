@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            width: 150px; /* Adjust width of the label */
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            flex: 1; /* Take remaining width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .short-url {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortener Service</h1>
+        <form action="/urlShortener/getShortUrl" method="get">
+            <div class="form-group">
+                <label for="longUrl">Enter Long URL:</label>
+                <input type="text" id="longUrl" name="longUrl" placeholder="Enter your Long URL">
+            </div>
+            <button type="submit">Shorten URL</button>
+        </form>
+        <div th:if="${shortUrl}" class="short-url">
+            <p>Short URL:</p>
+            <a th:href="${shortUrl}" th:text="${shortUrl}" target="_blank"></a>
+        </div>
+    </div>
+</body>
+</html>
